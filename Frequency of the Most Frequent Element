@@ -1,0 +1,24 @@
+class Solution {
+    public int maxFrequency(int[] nums, int k) {
+       //sliding window
+        //strink if ((right pointer element)*length of window) > (total sum till now + k)
+        //else expand the winow
+        //return max window size
+        Arrays.sort(nums);
+        int lp=0;
+        int rp=0;
+        long sum=0;
+        int res=Integer.MIN_VALUE;
+        while(rp<nums.length){
+            sum=sum+nums[rp];
+            while((long)nums[rp]*(rp-lp+1)>sum+k){//strink
+                sum=sum-nums[lp];
+                lp++;
+            }
+           res=Math.max(res,rp-lp+1); 
+            rp++;
+        }
+        return res;
+    }
+}
+
