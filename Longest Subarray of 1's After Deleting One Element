@@ -1,0 +1,23 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+         int  k=1;//no.of elements can be deleted
+        int lp=0;
+        int rp=0;
+        int res=0;
+        while(rp<nums.length){
+            if(nums[rp]==0){
+                k--;
+            }
+            while(k<0){
+                if(nums[lp]==0){
+                    k++;
+                }
+                lp++;
+            }
+          res=Math.max(res,rp-lp);
+            rp++;
+         
+        }
+        return res;
+    }
+}
