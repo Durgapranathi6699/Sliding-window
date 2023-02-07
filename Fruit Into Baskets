@@ -1,0 +1,24 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        if(fruits.length<=2){
+            return fruits.length;
+        }
+        //sliding window
+        int ans=0;
+        Map<Integer,Integer> map=new HashMap<>();
+        int j=0;
+        for(int i=0;i<fruits.length;i++){
+          map.put(fruits[i],map.getOrDefault(fruits[i],0)+1);
+          while(map.size()>2){
+              //start removing the added elemnts from the start
+              map.put(fruits[j],map.get(fruits[j])-1);
+              if(map.get(fruits[j])==0){
+                  map.remove(fruits[j]);
+              }
+              j++;
+          }
+          ans=Math.max(ans,i-j+1);//search for max window size
+        }
+        return ans;
+    }
+}
