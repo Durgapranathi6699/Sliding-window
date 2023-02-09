@@ -1,0 +1,21 @@
+//k times
+//each time u can select a card from first or last  
+
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        //link:https://www.youtube.com/watch?v=hloLz6BtV-Q&list=PLJ5Kt8rrHiSoA6fCFJvp3ZdzBM6iLSTdf
+        //take sum of k starting elements
+        int sum=0;
+        for(int i=0;i<k;i++){
+            sum=sum+cardPoints[i];
+        }
+        int max=sum;
+        //now starting removing the starting element one by one and add the last element
+        for(int i=k-1;i>=0;i--){
+            sum=sum-cardPoints[i];//1st elemnt to remove that at k-1 
+            sum=sum+cardPoints[cardPoints.length-k+i];//last element
+            max=Math.max(max,sum);
+        }
+        return max;
+    }
+}
